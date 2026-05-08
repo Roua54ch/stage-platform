@@ -1,5 +1,5 @@
 <?php require __DIR__ . "/../layouts/header.php"; ?>
-<?php require_once "../views/layouts/navbar.php"; ?>
+<?php require __DIR__ . "/../layouts/navbar.php"; ?>
 
 <div class="row">
 

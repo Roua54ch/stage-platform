@@ -1,6 +1,6 @@
 <?php
 
-require_once "../../helpers/Flash.php";
+require_once __DIR__ . "/../../helpers/Flash.php";
 $errors = $errors ?? [];
 ?>
 
@@ -43,7 +43,7 @@ $errors = $errors ?? [];
     </div>
 <?php endif; ?>
 
-<form method="POST">
+<form method="POST" action="/index.php?url=auth/login">
 
 <!-- EMAIL -->
 <div class="input-group mb-1">
@@ -86,7 +86,7 @@ $errors = $errors ?? [];
 </form>
 
 <p class="mt-3 text-center">
-    <a href="/auth/register">Create account</a>
+    <a href="/index.php?url=auth/register">Create account</a>
 </p>
 
 </div>

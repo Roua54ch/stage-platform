@@ -2,25 +2,24 @@
 
 class Controller {
 
-        // 📄 Load View
     public function view($view, $data = []) {
         extract($data);
-        require __DIR__ . "/../app/views/" . $view . ".php";
+        $file = __DIR__ . "/../views/" . $view . ".php";
 
         if (file_exists($file)) {
             require $file;
-        } else {
-            die("View not found: " . $data);
+            return;
         }
+
+        http_response_code(500);
+        die("View not found: " . htmlspecialchars($view));
     }
 
-    // 🔁 Redirect
     public function redirect($url) {
         header("Location: $url");
         exit;
     }
 
-    // 🔐 Check login
     public function auth() {
 
         if (!isset($_SESSION['user'])) {
@@ -29,7 +28,6 @@ class Controller {
         }
     }
 
-    // 👮 Role protection (SAFE VERSION)
     public function role($role) {
 
         if (!isset($_SESSION['user'])) {
@@ -42,7 +40,6 @@ class Controller {
         }
     }
 
-    // 👤 Get current user
     public function user() {
         return $_SESSION['user'] ?? null;
     }

@@ -1,5 +1,7 @@
 <?php
 
+// This file is the entrypoint of the app.
+// It loads the right controller + method based on `?url=...`
 session_start();
 
 require_once "../config/config.php";
@@ -60,7 +62,7 @@ try {
 
     http_response_code(500);
 
-    // en dev
+    // Show the error (development)
     echo "<h3>❌ Error:</h3>";
     echo "<pre>" . $e->getMessage() . "</pre>";
 

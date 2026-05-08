@@ -6,6 +6,16 @@ require_once "../models/Notification.php";
 class CandidatureController extends Controller {
 
     /* ================= POSTULER ================= */
+    /**
+     * Submit a candidature for a given offer.
+     *
+     * Requirements/constraints:
+     * - Must be logged in as `etudiant`
+     * - Upload must be a PDF
+     * - CV is stored under `storage/cv/` and only the filename is stored in DB
+     *
+     * @param mixed $offre_id Offer id
+     */
     public function postuler($offre_id) {
 
         Middleware::auth('etudiant');
@@ -42,6 +52,13 @@ class CandidatureController extends Controller {
     }
 
     /* ================= UPDATE STATUS ================= */
+    /**
+     * Enterprise updates candidature status (e.g. accepted/refused/pending).
+     * Also creates a notification for the student.
+     *
+     * @param mixed $id Candidature id
+     * @param mixed $status New status value
+     */
     public function updateStatus($id, $status) {
 
         Middleware::auth('entreprise');

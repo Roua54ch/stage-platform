@@ -7,6 +7,11 @@ require_once "../helpers/Validator.php";
 class OffreController extends Controller {
 
     // 📄 LIST
+    /**
+     * List all offers.
+     *
+     * Requires authentication.
+     */
     public function index() {
 
         $this->auth(); // 🔐 protection
@@ -17,6 +22,11 @@ class OffreController extends Controller {
     }
 
     // ➕ CREATE
+    /**
+     * Create a new offer.
+     *
+     * Requires authentication. On POST, validates and inserts an offer tied to the current user id.
+     */
     public function create() {
 
         $this->auth();
@@ -51,6 +61,11 @@ class OffreController extends Controller {
     }
 
     // ✏️ EDIT FORM
+    /**
+     * Show edit form for a specific offer id.
+     *
+     * @param mixed $id Offer id
+     */
     public function edit($id) {
 
         $this->auth();
@@ -61,6 +76,11 @@ class OffreController extends Controller {
     }
 
     // 🔁 UPDATE
+    /**
+     * Update a specific offer id.
+     *
+     * @param mixed $id Offer id
+     */
     public function update($id) {
 
         $this->auth();
@@ -74,6 +94,11 @@ class OffreController extends Controller {
     }
 
     // 🗑️ DELETE
+    /**
+     * Delete a specific offer id.
+     *
+     * @param mixed $id Offer id
+     */
     public function delete($id) {
 
         $this->auth();

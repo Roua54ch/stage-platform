@@ -1,8 +1,9 @@
 <?php
 
-require_once "../core/Model.php";
+require_once __DIR__ . "/../core/Model.php";
 
 class Candidature extends Model {
+    protected $table = 'candidatures';
 
     public function create($data) {
         $stmt = $this->db->prepare("
@@ -15,6 +16,7 @@ class Candidature extends Model {
             $data['cv'],
             $data['status']
         ]);
+        return (int)$this->db->lastInsertId();
     }
 
     public function getByEntreprise($entreprise_id) {
@@ -26,12 +28,12 @@ class Candidature extends Model {
             WHERE o.entreprise_id=?
         ");
         $stmt->execute([$entreprise_id]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll();
     }
 
     public function updateStatus($id, $status) {
         $stmt = $this->db->prepare("UPDATE candidatures SET status=? WHERE id=?");
-        $stmt->execute([$status, $id]);
+        return $stmt->execute([$status, $id]);
     }
 
     public function getEntrepriseByOffre($offre_id) {
@@ -44,5 +46,16 @@ class Candidature extends Model {
         $stmt = $this->db->prepare("SELECT user_id FROM candidatures WHERE id=?");
         $stmt->execute([$id]);
         return $stmt->fetchColumn();
+    }
+
+    public function countByEntreprise($entreprise_id) {
+        $stmt = $this->db->prepare("
+            SELECT COUNT(*)
+            FROM candidatures c
+            JOIN offres o ON c.offre_id = o.id
+            WHERE o.entreprise_id=?
+        ");
+        $stmt->execute([$entreprise_id]);
+        return (int)$stmt->fetchColumn();
     }
 }

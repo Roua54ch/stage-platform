@@ -8,6 +8,12 @@ require_once "../helpers/Flash.php";
 class AuthController extends Controller {
 
     /* ================= LOGIN ================= */
+    /**
+     * Login page + login submission.
+     *
+     * On POST: validates credentials, sets `$_SESSION['user']`, then redirects by role.
+     * On GET: renders the login form.
+     */
     public function login() {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -62,6 +68,12 @@ class AuthController extends Controller {
     }
 
     /* ================= REGISTER ================= */
+    /**
+     * Registration page + registration submission.
+     *
+     * On POST: validates inputs, prevents duplicate emails, inserts the user, then redirects to login.
+     * On GET: renders the registration form.
+     */
     public function register() {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -94,6 +106,9 @@ class AuthController extends Controller {
     }
 
     /* ================= LOGOUT ================= */
+    /**
+     * Logout: clears and destroys the session, then redirects to login.
+     */
     public function logout() {
 
         session_start();

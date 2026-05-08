@@ -23,7 +23,7 @@
 
 <p class="login-box-msg">Register a new account</p>
 
-<form method="POST">
+<form method="POST" action="/index.php?url=auth/register">
 
 <div class="input-group mb-3">
     <input type="text" name="name" class="form-control" placeholder="Full name" required>
@@ -64,7 +64,7 @@
 </form>
 
 <p class="mt-3 text-center">
-    <a href="/auth/login">Already have account?</a>
+    <a href="/index.php?url=auth/login">Already have account?</a>
 </p>
 
 </div>

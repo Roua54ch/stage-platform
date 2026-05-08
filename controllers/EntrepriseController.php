@@ -10,6 +10,11 @@ require_once "../models/Notification.php";
 class EntrepriseController extends Controller {
 
     /* ================= DASHBOARD ================= */
+    /**
+     * Enterprise dashboard (counts offers and received candidatures).
+     *
+     * Requires `entreprise` role.
+     */
     public function dashboard() {
 
         Middleware::auth('entreprise');
@@ -24,10 +29,15 @@ class EntrepriseController extends Controller {
             "totalCandidatures" => $candidatureModel->countByEntreprise($entreprise_id)
         ];
 
-        $this->view("entreprise/dashboard", $data);
+        $this->view("dashboard/entreprise", $data);
     }
 
     /* ================= LISTE OFFRES ================= */
+    /**
+     * List offers created by the current enterprise user.
+     *
+     * Requires `entreprise` role.
+     */
     public function offres() {
 
         Middleware::auth('entreprise');
@@ -42,6 +52,11 @@ class EntrepriseController extends Controller {
     }
 
     /* ================= CREATE OFFRE ================= */
+    /**
+     * Create a new offer as the current enterprise user.
+     *
+     * Requires `entreprise` role.
+     */
     public function createOffre() {
 
         Middleware::auth('entreprise');
@@ -61,6 +76,11 @@ class EntrepriseController extends Controller {
     }
 
     /* ================= CANDIDATURES ================= */
+    /**
+     * List candidatures received for the enterprise's offers.
+     *
+     * Requires `entreprise` role.
+     */
     public function candidatures() {
 
         Middleware::auth('entreprise');
@@ -75,6 +95,13 @@ class EntrepriseController extends Controller {
     }
 
     /* ================= DELETE OFFRE ================= */
+    /**
+     * Delete an offer owned by the enterprise.
+     *
+     * Requires `entreprise` role.
+     *
+     * @param mixed $id Offer id
+     */
     public function deleteOffre($id) {
 
         Middleware::auth('entreprise');

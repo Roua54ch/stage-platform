@@ -1,8 +1,8 @@
 <?php
-require_once "../app/core/Controller.php";
-require_once "../app/models/Offre.php";
-require_once "../app/models/User.php";
-require_once "../app/models/Candidature.php";
+require_once "../core/Controller.php";
+require_once "../models/Offre.php";
+require_once "../models/User.php";
+require_once "../models/Candidature.php";
 
 class DashboardController extends Controller {
 
